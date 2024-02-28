@@ -26,6 +26,10 @@ const loadBlueprint = async function () {
 
     });
 
+    await synthetics.launch({
+        ignoreHTTPSErrors: true
+    });
+
     let page = await synthetics.getPage();
 
     for (const url of urls) {
