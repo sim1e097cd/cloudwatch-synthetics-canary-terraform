@@ -25,7 +25,7 @@ variable "api_path" {
 
 variable "frequency" {
     type = string
-    description = "frequency of tests in minutes"
+    description = "Frequency of tests in minutes"
 }
 
 variable "reports-bucket" {
@@ -51,4 +51,22 @@ variable "security_group_id" {
 variable "alert_sns_topic" {
     type = string
     description = "The SNS topic to notify when canary fails"
+}
+
+variable "evaluation_periods" {
+    type = string
+    description = "The number of periods over which data is compared to the specified threshold"
+    default = "1"
+}
+
+variable "datapoints_to_alarm" {
+    type = string
+    description = "The number of datapoints that must be breaching to trigger the alarm"
+    default = "1"
+}
+
+variable "threshold" {
+    type = string
+    description = "The value against which the specified statistic is compared"
+    default = "90"
 }

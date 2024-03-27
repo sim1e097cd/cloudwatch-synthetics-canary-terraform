@@ -61,12 +61,12 @@ resource "aws_cloudwatch_metric_alarm" "canary_alarm" {
   alarm_name          = "canary-${var.name}"
   comparison_operator = "LessThanThreshold"
   period              = tostring(tonumber(var.frequency)*60)
-  evaluation_periods  = "1"
+  evaluation_periods  = var.evaluation_periods
   metric_name         = "SuccessPercent"
   namespace           = "CloudWatchSynthetics"
   statistic           = "Sum"
-  datapoints_to_alarm = "1"
-  threshold           = "90"
+  datapoints_to_alarm = var.datapoints_to_alarm
+  threshold           = var.threshold
   alarm_actions       = [var.alert_sns_topic]
   alarm_description   = "Canary - ${var.name}"
   dimensions          = {
