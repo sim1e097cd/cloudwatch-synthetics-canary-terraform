@@ -60,7 +60,7 @@ resource "aws_synthetics_canary" "canary_api_calls" {
 resource "aws_cloudwatch_metric_alarm" "canary_alarm" {
   alarm_name          = "canary-${var.name}"
   comparison_operator = "LessThanThreshold"
-  period              = "300" // 5 minutes (should be calculated from the frequency of the canary)
+  period              = tostring(tonumber(var.frequency)*60)
   evaluation_periods  = "1"
   metric_name         = "SuccessPercent"
   namespace           = "CloudWatchSynthetics"
